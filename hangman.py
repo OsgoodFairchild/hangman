@@ -1,4 +1,4 @@
-import pygame
+import pygame as pg
 
 from gallow import Gallow
 from man import Man
@@ -7,23 +7,31 @@ import game_function as gf
 
 def run_game():
 
-    pygame.init()
+    pg.init()
 
     gallow = Gallow()
     man = Man()
     settings = Settings()
 
-    screen = pygame.display.set_mode((settings.screen_width,
+    screen = pg.display.set_mode((settings.screen_width,
                                         settings.screen_height))
-    pygame.display.set_caption("Hangman")
+    pg.display.set_caption("Hangman")
 
     while True:
-        for event in pygame.event.get():
+        for event in pg.event.get():
             gf.check_events(event)
 
         screen.fill(settings.screen_color)
 
-        pygame.display.flip()
+        answer = "HELLO"
+
+        string = ""
+
+        gf.print_empty_game_board(screen)
+        man.draw_entire_man(screen)
+        gallow.draw_structure(screen)
+
+        pg.display.flip()
 
 
 
